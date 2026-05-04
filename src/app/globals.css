@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 271 91% 65%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 271 91% 65%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .theme-surface {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(18px);
+    transition:
+      background-color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .theme-surface-strong {
+    border: 1px solid rgba(var(--country-secondary-rgb), 0.16);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--country-primary-rgb), 0.1),
+        rgba(8, 15, 28, 0.9) 22%,
+        rgba(8, 15, 28, 0.96) 100%
+      );
+    backdrop-filter: blur(18px);
+    transition:
+      background 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .theme-pill {
+    border: 1px solid rgba(var(--country-secondary-rgb), 0.2);
+    background-color: rgba(var(--country-primary-rgb), 0.12);
+    color: rgba(255, 255, 255, 0.82);
+    transition:
+      background-color 0.5s ease,
+      border-color 0.5s ease,
+      color 0.5s ease;
+  }
+
+  .theme-button-primary {
+    background-color: var(--country-primary);
+    color: var(--country-button-foreground);
+    box-shadow: 0 16px 36px rgba(var(--country-primary-rgb), 0.24);
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease,
+      box-shadow 0.5s ease,
+      transform 0.2s ease;
+  }
+
+  .theme-button-primary:hover {
+    box-shadow: 0 18px 42px rgba(var(--country-primary-rgb), 0.3);
+    transform: translateY(-1px);
+  }
+
+  .theme-button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.82);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .theme-button-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.09);
+    color: #fff;
+  }
+
+  .theme-input {
+    border: 1px solid rgba(var(--country-secondary-rgb), 0.16);
+    background-color: rgba(15, 23, 42, 0.86);
+    transition:
+      border-color 0.5s ease,
+      box-shadow 0.5s ease,
+      background-color 0.5s ease;
+  }
+
+  .theme-input:focus {
+    border-color: rgba(var(--country-secondary-rgb), 0.84);
+    box-shadow: 0 0 0 4px rgba(var(--country-secondary-rgb), 0.14);
+    outline: none;
+  }
+}
