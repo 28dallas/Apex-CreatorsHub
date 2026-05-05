@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import type Stripe from "stripe";
 import { createServiceClient } from "@/lib/supabase/server";
 import { stripe } from "@/lib/payments/stripe/stripe";
 
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
 
   switch (event.type) {
     case "checkout.session.completed": {
-      const session = event.data.object as Stripe.CheckoutSession;
+      const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.user_id;
       const tier = session.metadata?.tier as "growth" | "agency";
 

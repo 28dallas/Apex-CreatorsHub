@@ -1,6 +1,16 @@
 import { createClient } from "@/lib/supabase/server";
 import CompetitorClient from "./CompetitorClient";
 
+type Competitor = {
+  id: string;
+  platform: string;
+  handle: string;
+  display_name: string | null;
+  follower_count: number;
+  last_checked_at: string | null;
+  snapshots: Array<{ date: string; followers: number }>;
+};
+
 export default async function CompetitorsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -17,7 +27,11 @@ export default async function CompetitorsPage() {
         <h1 className="text-xl font-bold">Competitor Tracker</h1>
         <p className="text-xs text-slate-500 mt-0.5">Monitor competitor growth and top posts</p>
       </div>
-      <CompetitorClient competitors={competitors ?? []} tier={profile?.tier ?? "starter"} userId={user!.id} />
+      <CompetitorClient competitors={competitors as Competitor[] ?? []} tier={profile?.tier ?? "starter"} userId={user!.id} />
+</xai:function_call >
+
+<xai:function_call name="execute_command">
+<parameter name="command">git add src/app/(dashboard)/competitors/page.tsx
     </div>
   );
 }

@@ -297,19 +297,23 @@ Respond ONLY with valid JSON:
     const r = JSON.parse(completion.choices[0].message.content ?? "{}");
 
     // Log plan non-blocking
-    createServiceClient()
-      .from("plan_results")
-      .insert({
-        user_id: user.id,
-        plan_date: new Date().toISOString().split("T")[0],
-        recommended_time: parsed.peak_active_hours,
-        platform: parsed.platform,
-        predicted_engagement: data_backed
-          ? parseFloat(engRange.split("%")[0]) || null
-          : null,
-      })
-      .then(() => {})
-      .catch(() => {});
+    void (async () => {
+      try {
+        await createServiceClient()
+          .from("plan_results")
+          .insert({
+            user_id: user.id,
+            plan_date: new Date().toISOString().split("T")[0],
+            recommended_time: parsed.peak_active_hours,
+            platform: parsed.platform,
+            predicted_engagement: data_backed
+              ? parseFloat(engRange.split("%")[0]) || null
+              : null,
+          });
+      } catch {
+        // Non-blocking analytics log
+      }
+    })();
 
     return {
       daily_action: r.daily_action ?? "",

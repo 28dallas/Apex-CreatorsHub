@@ -89,7 +89,7 @@ Powered by CreatorPulse
             {niche === "Fitness" ? "💪" : niche === "Food" ? "🍽️" : niche === "Comedy" ? "😂" : niche === "Fashion" ? "👗" : "✨"}
           </div>
           <div>
-            <p className="font-bold text-lg">{user.full_name ?? `@${user.username}` ?? "Your Name"}</p>
+            <p className="font-bold text-lg">{user.full_name ?? (user.username ? `@${user.username}` : "Your Name")}</p>
             <p className="text-sm" style={{ color: "var(--country-secondary)" }}>{niche} Creator</p>
           </div>
           <div className="ml-auto text-right">
