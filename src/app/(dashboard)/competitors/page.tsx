@@ -15,11 +15,17 @@ export default async function CompetitorsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: profile } = await (supabase.from("users") as any).select("tier").eq("id", user!.id).single() as { data: { tier: string } | null };
+  const { data: profile } = await (supabase.from("users") as any)
+    .select("tier")
+    .eq("id", user!.id)
+    .single() as { data: { tier: string } | null };
+
   const { data: competitors } = await (supabase.from("competitor_tracks") as any)
     .select("*")
     .eq("user_id", user!.id)
     .order("created_at", { ascending: false }) as { data: unknown[] | null };
+
+  const competitorList = (competitors as Competitor[] | null) ?? [];
 
   return (
     <div className="max-w-3xl mx-auto space-y-6 pb-20 md:pb-0">
@@ -27,8 +33,7 @@ export default async function CompetitorsPage() {
         <h1 className="text-xl font-bold">Competitor Tracker</h1>
         <p className="text-xs text-slate-500 mt-0.5">Monitor competitor growth and top posts</p>
       </div>
-      <CompetitorClient competitors={competitors as Competitor[] ?? []} tier={profile?.tier ?? "starter"} userId={user!.id} />
+      <CompetitorClient competitors={competitorList} tier={profile?.tier ?? "starter"} userId={user!.id} />
     </div>
   );
 }
-
