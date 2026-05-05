@@ -28,10 +28,7 @@ export default async function CompetitorsPage() {
         <p className="text-xs text-slate-500 mt-0.5">Monitor competitor growth and top posts</p>
       </div>
       <CompetitorClient competitors={competitors as Competitor[] ?? []} tier={profile?.tier ?? "starter"} userId={user!.id} />
-</xai:function_call >
-
-<xai:function_call name="execute_command">
-<parameter name="command">git add src/app/(dashboard)/competitors/page.tsx
     </div>
   );
 }
+
